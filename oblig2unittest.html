@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Oblig 2</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+    <style>
+    
+    </style>
+</head>
+
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.10.0.js"></script>
+  <script src="oblig2controller.js"></script>
+  <script>
+  function show() { }
+    let contentDiv;
+    let numbers;
+    let inputValue;
+    let selectedId;
+    let error;
+
+  QUnit.test("Select bar", function (assert) {
+    reset()
+    selectBar('3');
+    assert.equal(selectedId, '3');
+  });
+
+  QUnit.test("none selected", function (assert) {
+    reset()
+    selectBar('1');
+    selectBar('1');
+    assert.equal(selectedId, null);
+  });
+
+  QUnit.test("New bar id", function (assert) {
+    reset()
+    selectBar('1')
+    selectBar('4');
+    assert.equal(selectedId, '4');
+  });
+
+  QUnit.test("Bar selected deleted", function (assert) {
+    reset()
+    selectBar('3')
+    deleteBar()
+    assert.equal(numbers.length, 4);
+  });
+
+  QUnit.test("Change bar", function (assert) {
+    reset()
+    selectBar('3')
+    inputValue = 6;
+    changeBar()
+    assert.equal(numbers[2], 6);
+  });
+
+  QUnit.test("Add new bar", function (assert) {
+    reset()
+    inputValue = 6;
+    addBar()
+    assert.equal(numbers.length, 6);
+  });
+  </script>
+</body>
+
+</html>
